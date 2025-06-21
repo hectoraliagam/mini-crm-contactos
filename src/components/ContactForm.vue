@@ -41,21 +41,15 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue'
-
-interface Contacto {
-  id?: number
-  name: string
-  email: string
-  phone: string
-}
+import type { ContactoForm } from '@/models/Contacto'
 
 const props = defineProps<{
-  initialContacto?: Contacto
-  onSubmit: (contacto: Contacto) => void
+  initialContacto?: ContactoForm
+  onSubmit: (contacto: ContactoForm) => void
   buttonText?: string
 }>()
 
-const form = reactive<Contacto>({
+const form = reactive<ContactoForm>({
   name: '',
   email: '',
   phone: ''

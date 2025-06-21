@@ -6,17 +6,33 @@
 </template>
 
 <script setup lang="ts">
+// @ts-ignore
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import ContactForm from '@/components/ContactForm.vue'
-import type { Contacto, State } from '@/stores'
+import type { State } from '@/stores'
+import type { Contacto } from '@/models/Contacto'
+import type { ContactoForm } from '@/models/Contacto'
 
 const store = useStore<State>()
 const router = useRouter()
 
-function agregar(contacto: Contacto) {
-  // Por ahora solo agregar localmente
-  const nuevoContacto = { ...contacto, id: Date.now(), username: '', address: { street: '', suite: '', city: '', zipcode: '' }, company: { name: '' } }
+function agregar(contacto: ContactoForm) {
+  const nuevoContacto: Contacto = {
+    ...contacto,
+    id: Date.now(),
+    username: '',
+    address: {
+      street: '',
+      suite: '',
+      city: '',
+      zipcode: ''
+    },
+    company: {
+      name: ''
+    }
+  }
+
   const nuevos = [...store.state.contactos, nuevoContacto]
   store.commit('setContactos', nuevos)
   router.push('/contactos')

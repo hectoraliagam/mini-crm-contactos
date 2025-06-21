@@ -14,3 +14,5 @@ export interface Contacto {
     name: string
   }
 }
+
+export type ContactoForm = Pick<Contacto, 'name' | 'email' | 'phone'>

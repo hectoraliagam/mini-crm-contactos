@@ -1,31 +1,36 @@
-import { createStore } from 'vuex'
-import axios from 'axios'
-import type { Contacto } from '@/models/Contacto'
+// @ts-ignore
+import { createStore } from "vuex";
+import axios from "axios";
+import type { Contacto } from "@/models/Contacto";
 
 export interface State {
-  contactos: Contacto[]
+  contactos: Contacto[];
 }
 
 const store = createStore<State>({
   state: (): State => ({
-    contactos: []
+    contactos: [],
   }),
   mutations: {
-    setContactos(state, contactos: Contacto[]) {
-      state.contactos = contactos
-    }
+    setContactos(state: State, contactos: Contacto[]) {
+      state.contactos = contactos;
+    },
   },
   actions: {
-    async cargarContactos({ commit }) {
-      const res = await axios.get<Contacto[]>('https://jsonplaceholder.typicode.com/users')
-      commit('setContactos', res.data)
-    }
+    async cargarContactos({ commit }: { commit: Function }) {
+      const res = await axios.get<Contacto[]>(
+        "https://jsonplaceholder.typicode.com/users"
+      );
+      commit("setContactos", res.data);
+    },
   },
   getters: {
-    getContactoPorId: (state) => (id: number) => {
-      return state.contactos.find((c: Contacto) => c.id === id)
-    }
-  }
-})
+    getContactoPorId:
+      (state: State) =>
+      (id: number): Contacto | undefined => {
+        return state.contactos.find((c: Contacto) => c.id === id);
+      },
+  },
+});
 
-export default store
+export default store;

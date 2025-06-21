@@ -19,7 +19,7 @@ const router = createRouter({
 })
 
 // Protege rutas privadas
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _, next) => {
   const isAuth = localStorage.getItem('auth') === 'true'
   const publicPaths = ['/']
 

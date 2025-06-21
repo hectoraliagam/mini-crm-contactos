@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
+// @ts-ignore
 import { useStore } from 'vuex'
 import type { State } from '@/stores'
 import ContactCard from '@/components/ContactCard.vue'

@@ -33,6 +33,7 @@
 
 <script setup lang="ts">
 import { onMounted, computed } from 'vue'
+// @ts-ignore
 import { useStore } from 'vuex'
 import type { State } from '@/stores'
 
